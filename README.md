@@ -106,7 +106,7 @@ This script:
 
 Now, we are ready to launch the network:
 ```
-helm install ./hlf-kube --name hlf-kube -f samples/simple/network.yaml -f samples/simple/crypto-config.yaml
+helm install ./hlf-kube -f samples/simple/network.yaml -f samples/simple/crypto-config.yaml --generate-name
 ```
 This chart creates all the above mentioned secrets, pods, services, etc. cross configures them 
 and launches the network in unpopulated state.
@@ -191,7 +191,7 @@ Then create necessary stuff:
 ```
 Lets launch our scaled up Fabric network:
 ```
-helm install ./hlf-kube --name hlf-kube -f samples/scaled-kafka/network.yaml -f samples/scaled-kafka/crypto-config.yaml -f samples/scaled-kafka/values.yaml
+helm install ./hlf-kube -f samples/scaled-kafka/network.yaml -f samples/scaled-kafka/crypto-config.yaml -f samples/scaled-kafka/values.yaml --generate-name
 ```
 Again lets wait for all pods are up and running:
 ```
@@ -240,7 +240,7 @@ Then create necessary stuff:
 ```
 Lets launch our Raft based Fabric network in _broken_ state:
 ```
-helm install ./hlf-kube --name hlf-kube -f samples/scaled-raft-tls/network.yaml -f samples/scaled-raft-tls/crypto-config.yaml 
+helm install ./hlf-kube -f samples/scaled-raft-tls/network.yaml -f samples/scaled-raft-tls/crypto-config.yaml --generate-name
 ```
 The pods will start but they cannot communicate to each other since domain names are unknown. You might also want to use the option `--set peer.launchPods=false --set orderer.launchPods=false` to make this process faster.
 
@@ -335,7 +335,7 @@ Wait a bit until all pods are terminated, then create necessary stuff:
 
 Luanch the Raft based Fabric network in broken state (only because of `useActualDomains=true`)
 ```
-helm install ./hlf-kube --name hlf-kube -f samples/scaled-raft-no-tls/network.yaml -f samples/scaled-raft-no-tls/crypto-config.yaml --set orderer.cluster.enabled=true --set peer.launchPods=false --set orderer.launchPods=false
+helm install ./hlf-kube -f samples/scaled-raft-no-tls/network.yaml -f samples/scaled-raft-no-tls/crypto-config.yaml --set orderer.cluster.enabled=true --set peer.launchPods=false --set orderer.launchPods=false --generate-name
 ```
 
 Collect the host aliases:
