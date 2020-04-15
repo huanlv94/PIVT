@@ -51,13 +51,13 @@ peer:
     enabled: false
     size: 16Gi
   ingress:
-    enabled: false
+    enabled: true
     annotations:
       # this should match the ingressClass when peer ingress controller is created
       kubernetes.io/ingress.class: "hlf-peer"
   externalService:
     # expose peers to outer world with LoadBalancer service type?
-    enabled: false
+    enabled: true
     annotations:
   # if enabled, podAntiAffinity is used to spread the peer pods in the same organization among nodes
   # normally no need to disable this
@@ -112,17 +112,17 @@ orderer:
   # useful when you dont want to enable TLS globally (i.e for transparent load balancing)
   # has no effect if orderer type is not etcdraft
   cluster:
-    enabled: false
+    enabled: true
     # raft cluster communication port. should be in synch with consenters in configtx.yaml
     port: 7059
   ingress:
-    enabled: false
+    enabled: true
     annotations:
       # this should match the ingressClass when orderer ingress controller is created
       kubernetes.io/ingress.class: "hlf-orderer"
   externalService:
     # expose orderers to outer world with LoadBalancer service type?
-    enabled: false
+    enabled: true
     annotations:
   # if enabled, podAntiAffinity is used to spread the orderer pods in the same organization among nodes
   # normally no need to disable this
