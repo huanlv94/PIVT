@@ -5,8 +5,8 @@ OrdererOrgs:
   # ---------------------------------------------------------------------------
   # Orderer
   # ---------------------------------------------------------------------------
-  - Name: Groeifabriek
-    Domain: groeifabriek.nl
+  - Name: Huanlv
+    Domain: huanlv.com
     EnableNodeOUs: true
     Specs:
       - Hostname: orderer0
@@ -14,24 +14,16 @@ OrdererOrgs:
 # "PeerOrgs" - Definition of organizations managing peer nodes
 # ---------------------------------------------------------------------------
 PeerOrgs:
-  - Name: Karga
-    Domain: aptalkarga.tr
+  - Name: Huanlv
+    Domain: huanlv.com
     EnableNodeOUs: true
     Template:
       Count: 1
     Users:
       Count: 1
   
-  - Name: Nevergreen
-    Domain: nevergreen.nl
-    EnableNodeOUs: true
-    Template:
-      Count: 1
-    Users:
-      Count: 1
-
-  - Name: Atlantis
-    Domain: atlantis.com
+  - Name: Akachain
+    Domain: akachain.io
     EnableNodeOUs: true
     Template:
       Count: 1

@@ -79,4 +79,4 @@ cp -r $project_folder/channel-artifacts hlf-kube/
 cp -r $project_folder/configtx.yaml hlf-kube/
 
 # prepare chaincodes
-./prepare_chaincodes.sh $project_folder $chaincode_folder
+# ./prepare_chaincodes.sh $project_folder $chaincode_folder
