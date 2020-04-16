@@ -10,14 +10,14 @@
 ################################################################################
 Organizations:
 
-    - &Groeifabriek
-        Name: GroeifabriekMSP
+    - &Huanlv
+        Name: HuanlvMSP
 
         # ID to load the MSP definition as
-        ID: GroeifabriekMSP
+        ID: HuanlvMSP
 
         # MSPDir is the filesystem path which contains the MSP configuration
-        MSPDir: crypto-config/ordererOrganizations/groeifabriek.nl/msp
+        MSPDir: crypto-config/ordererOrganizations/huanlv.com/msp
 
         # Policies defines the set of policies at this level of the config tree
         # For organization policies, their canonical path is usually
@@ -25,74 +25,27 @@ Organizations:
         Policies:
             Readers:
                 Type: Signature
-                Rule: "OR('GroeifabriekMSP.member')"
+                Rule: "OR('HuanlvMSP.member')"
             Writers:
                 Type: Signature
-                Rule: "OR('GroeifabriekMSP.member')"
+                Rule: "OR('HuanlvMSP.member')"
             Admins:
                 Type: Signature
-                Rule: "OR('GroeifabriekMSP.admin')"
-
-    - &Pivt
-        Name: PivtMSP
-
-        # ID to load the MSP definition as
-        ID: PivtMSP
-
-        MSPDir: crypto-config/ordererOrganizations/pivt.nl/msp
-
-        # Policies defines the set of policies at this level of the config tree
-        # For organization policies, their canonical path is usually
-        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
-        Policies:
-            Readers:
-                Type: Signature
-                Rule: "OR('PivtMSP.member')"
-            Writers:
-                Type: Signature
-                Rule: "OR('PivtMSP.member')"
-            Admins:
-                Type: Signature
-                Rule: "OR('PivtMSP.admin')"
-
-    - &Karga
-        Name: KargaMSP
-
-        # ID to load the MSP definition as
-        ID: KargaMSP
-
-        MSPDir: crypto-config/peerOrganizations/aptalkarga.tr/msp
-
-        # Policies defines the set of policies at this level of the config tree
-        # For organization policies, their canonical path is usually
-        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
-        Policies:
-            Readers:
-                Type: Signature
-                Rule: "OR('KargaMSP.admin', 'KargaMSP.peer', 'KargaMSP.client')"
-            Writers:
-                Type: Signature
-                Rule: "OR('KargaMSP.admin', 'KargaMSP.client')"
-            Admins:
-                Type: Signature
-                Rule: "OR('KargaMSP.admin')"
-
+                Rule: "OR('HuanlvMSP.admin')"
         AnchorPeers:
             # AnchorPeers defines the location of peers which can be used
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
-            - Host: peer0.aptalkarga.tr
+            - Host: peer0.huanlv.com
               Port: 7051
 
-    - &Nevergreen
-        # DefaultOrg defines the organization which is used in the sampleconfig
-        # of the fabric.git development environment
-        Name: NevergreenMSP
+    - &Akachain
+        Name: AkachainMSP
 
         # ID to load the MSP definition as
-        ID: NevergreenMSP
+        ID: AkachainMSP
 
-        MSPDir: crypto-config/peerOrganizations/nevergreen.nl/msp
+        MSPDir: crypto-config/peerOrganizations/akachain.io/msp
 
         # Policies defines the set of policies at this level of the config tree
         # For organization policies, their canonical path is usually
@@ -100,50 +53,19 @@ Organizations:
         Policies:
             Readers:
                 Type: Signature
-                Rule: "OR('NevergreenMSP.admin', 'NevergreenMSP.peer', 'NevergreenMSP.client')"
+                Rule: "OR('AkachainMSP.admin', 'AkachainMSP.peer', 'AkachainMSP.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('NevergreenMSP.admin', 'NevergreenMSP.client')"
+                Rule: "OR('AkachainMSP.admin', 'AkachainMSP.client')"
             Admins:
                 Type: Signature
-                Rule: "OR('NevergreenMSP.admin')"
+                Rule: "OR('AkachainMSP.admin')"
 
         AnchorPeers:
             # AnchorPeers defines the location of peers which can be used
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
-            - Host: peer0.nevergreen.nl
-              Port: 7051
-
-    - &Atlantis
-        # DefaultOrg defines the organization which is used in the sampleconfig
-        # of the fabric.git development environment
-        Name: AtlantisMSP
-
-        # ID to load the MSP definition as
-        ID: AtlantisMSP
-
-        MSPDir: crypto-config/peerOrganizations/atlantis.com/msp
-
-        # Policies defines the set of policies at this level of the config tree
-        # For organization policies, their canonical path is usually
-        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
-        Policies:
-            Readers:
-                Type: Signature
-                Rule: "OR('AtlantisMSP.admin', 'AtlantisMSP.peer', 'AtlantisMSP.client')"
-            Writers:
-                Type: Signature
-                Rule: "OR('AtlantisMSP.admin', 'AtlantisMSP.client')"
-            Admins:
-                Type: Signature
-                Rule: "OR('AtlantisMSP.admin')"
-
-        AnchorPeers:
-            # AnchorPeers defines the location of peers which can be used
-            # for cross org gossip communication.  Note, this value is only
-            # encoded in the genesis block in the Application section context
-            - Host: peer0.atlantis.com
+            - Host: peer0.akachain.io
               Port: 7051
 
 ################################################################################
@@ -247,7 +169,7 @@ Orderer: &OrdererDefaults
 
     Addresses:
         # - hlf-orderer--groeifabriek-0:7050
-        - orderer0.groeifabriek.nl:7050
+        - orderer0.huanlv.com:7050
 
     # Batch Timeout: The amount of time to wait before creating a batch
     BatchTimeout: 1s
@@ -269,18 +191,14 @@ Orderer: &OrdererDefaults
 
     EtcdRaft:
         Consenters:
-        - Host: orderer0.groeifabriek.nl
+        - Host: orderer0.huanlv.com
           Port: 7050
-          ClientTLSCert: crypto-config/ordererOrganizations/groeifabriek.nl/orderers/orderer0.groeifabriek.nl/tls/server.crt
-          ServerTLSCert: crypto-config/ordererOrganizations/groeifabriek.nl/orderers/orderer0.groeifabriek.nl/tls/server.crt
-        - Host: orderer1.groeifabriek.nl
+          ClientTLSCert: crypto-config/ordererOrganizations/huanlv.com/orderers/orderer0.huanlv.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/huanlv.com/orderers/orderer0.huanlv.com/tls/server.crt
+        - Host: orderer1.huanlv.com
           Port: 7050
-          ClientTLSCert: crypto-config/ordererOrganizations/groeifabriek.nl/orderers/orderer1.groeifabriek.nl/tls/server.crt
-          ServerTLSCert: crypto-config/ordererOrganizations/groeifabriek.nl/orderers/orderer1.groeifabriek.nl/tls/server.crt
-        - Host: orderer0.pivt.nl
-          Port: 7050
-          ClientTLSCert: crypto-config/ordererOrganizations/pivt.nl/orderers/orderer0.pivt.nl/tls/server.crt
-          ServerTLSCert: crypto-config/ordererOrganizations/pivt.nl/orderers/orderer0.pivt.nl/tls/server.crt
+          ClientTLSCert: crypto-config/ordererOrganizations/huanlv.com/orderers/orderer1.huanlv.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/huanlv.com/orderers/orderer1.huanlv.com/tls/server.crt
 
         # Options to be specified for all the etcd/raft nodes. The values here
         # are the defaults for all new channels and can be modified on a
@@ -384,35 +302,39 @@ Profiles:
         Orderer:
             <<: *OrdererDefaults
             Organizations:
-                - *Groeifabriek
-                - *Pivt
-                          
+                - *Huanlv
+
         Consortiums:
             TheConsortium:
                 Organizations:
-                    - *Karga
-                    - *Nevergreen
-                    - *Atlantis
-                    
+                    - *Huanlv
+                    - *Akachain
+
             SecondConsortium:
                 Organizations:
-                    - *Karga
+                    - *Akachain
 
-    common:
+    mychannel:
         Consortium: TheConsortium
         <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
-                - *Karga
-                - *Nevergreen
-                - *Atlantis
+                - *Akachain
+                - *Huanlv
 
-    private-karga-atlantis:
+    private-huanlv:
         Consortium: TheConsortium
         <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
-                - *Karga
-                - *Atlantis
+                - *Huanlv
+
+    private-akachain:
+        Consortium: TheConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *Akachain

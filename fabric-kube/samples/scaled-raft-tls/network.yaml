@@ -9,12 +9,12 @@ network:
 
   # defines which organizations will join to which channels
   channels:
-    - name: common
+    - name: mychannel
       # all peers in these organizations will join the channel
-      orgs: [Karga, Nevergreen, Atlantis]
-    - name: private-karga-atlantis
+      orgs: [Huanlv, Akachain]
+    - name: private-huanlv
       # all peers in these organizations will join the channel
-      orgs: [Karga, Atlantis]
+      orgs: [Huanlv]
 
   # defines which chaincodes will be installed to which organizations
   chaincodes:
@@ -22,22 +22,22 @@ network:
       # if defined, this will override the global chaincode.version value
       version: # "2.0" 
       # chaincode will be installed to all peers in these organizations
-      orgs: [Karga, Nevergreen, Atlantis]
+      orgs: [Huanlv, Akachain]
       # at which channels are we instantiating/upgrading chaincode?
       channels:
-      - name: common
+      - name: mychannel
         # chaincode will be instantiated/upgraded using the first peer in the first organization
         # chaincode will be invoked on all peers in these organizations
-        orgs: [Karga, Nevergreen, Atlantis]
-        policy: OR('KargaMSP.member','NevergreenMSP.member','AtlantisMSP.member')
+        orgs: [Huanlv, Akachain]
+        policy: OR('HuanlvMSP.member','AkachainMSP.member')
         
     - name: even-simpler
       # if defined, this will override the global chaincode.language value
       language: golang
-      orgs: [Karga, Atlantis]
+      orgs: [Huanlv, Akachain]
       channels:
-      - name: private-karga-atlantis
-        orgs: [Karga, Atlantis]
-        policy: OR('KargaMSP.member','AtlantisMSP.member')
+      - name: private-akachain
+        orgs: [Akachain]
+        policy: OR('AkachainMSP.member')
 
 
